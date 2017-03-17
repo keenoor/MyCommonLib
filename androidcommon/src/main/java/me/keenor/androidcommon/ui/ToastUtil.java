@@ -10,6 +10,7 @@ import me.keenor.androidcommon.ContextUtil;
  * Author:      chenliuchun
  * Date:        17/3/9
  * Description: 吐司工具类，任意线程内使用
+ * 注意：上下文对象为applicationContext，尽量不使用页面的Context
  * Modification History:
  * Date       Author       Version     Description
  * -----------------------------------------------------
@@ -22,6 +23,10 @@ public class ToastUtil {
     private ToastUtil() {
     }
 
+    /**
+     * 默认显示时间为Short
+     * @param text
+     */
     public static void show(final CharSequence text) {
         if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
             showMain(text);
