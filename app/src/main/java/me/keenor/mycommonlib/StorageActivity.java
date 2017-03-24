@@ -22,7 +22,8 @@ import me.keenor.androidcommon.util.ViewFindHelper;
  * Author:      chenliuchun
  * Date:        17/3/22
  * Description: 分清楚内部存储、外部存储之间的关系，调用方法，文件夹权限，卸载残留情况；
- *
+ *          https://developer.android.com/guide/topics/data/data-storage.html#filesInternal
+ *          https://developer.android.com/training/basics/data-storage/files.html#InternalVsExternalStorage
  * 内部存储：
      1. 它始终可用。
      2. 只有您的应用可以访问此处保存的文件。
@@ -208,6 +209,10 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void testOtherDir(){
+
+        // 内部指定文件夹存储
+        String innerDir = getDir("test", Context.MODE_PRIVATE).getPath();
+
         // 外部存储的 cache 目录
         String exterCacheDir = getExternalCacheDir().getAbsolutePath();
         // 外部存储的文件目录
@@ -216,6 +221,8 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
         String envExternalStorageDir = Environment.getExternalStorageDirectory().getAbsolutePath();
         // 外部存储的不带包名存储路径
         String envExternalStoragePubDirMusic = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
+
+        LogUtil.i2("innerDir: " + innerDir);
 
         LogUtil.i2("exterCacheDir: " + exterCacheDir);
         LogUtil.i2("exterFileDirMusic: " + exterFileDirMusic);

@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import me.keenor.androidcommon.ContextUtil;
+import me.keenor.androidcommon.util.AppUtil;
 
 /**
  * Author:      chenliuchun
@@ -42,7 +42,7 @@ public class ToastUtil {
 
     private static void showMain(CharSequence text) {
         if (toast == null) {
-            toast = Toast.makeText(ContextUtil.getContext(), text, Toast.LENGTH_SHORT);
+            toast = Toast.makeText(AppUtil.getContext(), text, Toast.LENGTH_SHORT);
         } else {
             toast.setText(text);
         }

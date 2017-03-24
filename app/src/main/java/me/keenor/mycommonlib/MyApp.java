@@ -3,7 +3,7 @@ package me.keenor.mycommonlib;
 import android.app.Application;
 import android.content.Context;
 
-import me.keenor.androidcommon.ContextUtil;
+import me.keenor.androidcommon.util.AppUtil;
 
 /**
  * Created by chenliuchun on 17/3/16.
@@ -20,7 +20,7 @@ public class MyApp extends Application {
         sAppContext = this;
 
         // AndroidCommon module 工具类设置上下文
-        ContextUtil.setContext(this.getApplicationContext());
+        AppUtil.setContext(this.getApplicationContext());
 
     }
 

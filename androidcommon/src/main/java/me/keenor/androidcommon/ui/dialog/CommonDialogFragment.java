@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.lang.reflect.Method;
 
-import me.keenor.androidcommon.ContextUtil;
+import me.keenor.androidcommon.util.AppUtil;
 
 /**
  * Author:      chenliuchun
@@ -140,6 +140,7 @@ public class CommonDialogFragment extends DialogFragment {
 
     /**
      * 模式 2 的监听器转换，通过监听器全名
+     * 因为没办法持久化监听器实例，就只能持久化类全名，然后通过反射去调方法
      * @param object
      * @param className
      * @return
@@ -184,7 +185,7 @@ public class CommonDialogFragment extends DialogFragment {
     }
 
     public CommonDialogFragment setTitle(int title) {
-        this.title = ContextUtil.getContext().getText(title);
+        this.title = AppUtil.getContext().getText(title);
         return this;
     }
 
@@ -194,7 +195,7 @@ public class CommonDialogFragment extends DialogFragment {
     }
 
     public CommonDialogFragment setMessage(int message) {
-        this.message = ContextUtil.getContext().getText(message);
+        this.message = AppUtil.getContext().getText(message);
         return this;
     }
 

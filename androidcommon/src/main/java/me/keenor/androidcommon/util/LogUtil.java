@@ -5,8 +5,6 @@ import android.util.Log;
 
 import java.util.Locale;
 
-import me.keenor.androidcommon.ContextUtil;
-
 /**
  * 日志输出工具类
  * 华为手机只能输出i\w\e的log，需要注意
@@ -23,8 +21,8 @@ public class LogUtil {
     static {
         // 由于在被依赖 module 里面无论如何，BuildConfig.DEBUG 始终为 false，导致判断失效
         // 因此，在非主 module 里面判断是否是 DEBUG 模式的最佳办法如下
-        sIsLog = ContextUtil.getContext().getApplicationInfo() != null &&
-                (ContextUtil.getContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        sIsLog = AppUtil.getContext().getApplicationInfo() != null &&
+                (AppUtil.getContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 
     // 直接使用Log

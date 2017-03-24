@@ -2,7 +2,6 @@ package me.keenor.mycommonlib;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -32,15 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        ContentLoadingProgressBar progressBar = viewHelper.getView(R.id.progress02);
-
         switch (v.getId()) {
             case R.id.btn_01:
-                progressBar.hide();
 
                 break;
             case R.id.btn_02:
-                progressBar.show();
+
 
                 break;
             case R.id.btn_03:
@@ -58,12 +54,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.btn_04:
-
+                StorageActivity.show(this);
                 break;
             case R.id.btn_05:
-
+                CameraPermissionActivity.show(this);
                 break;
             case R.id.btn_06:
+
 
                 break;
             case R.id.btn_07:
