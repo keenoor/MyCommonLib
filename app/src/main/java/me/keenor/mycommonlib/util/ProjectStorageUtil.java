@@ -2,7 +2,12 @@ package me.keenor.mycommonlib.util;
 
 import android.os.Environment;
 
+import org.apache.commons.lang3.RandomUtils;
+
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import me.keenor.androidcommon.util.AppUtil;
 import me.keenor.androidcommon.util.LogUtil;
@@ -16,7 +21,10 @@ import me.keenor.androidcommon.util.LogUtil;
  * -----------------------------------------------------
  */
 
-public class ProjectStorage {
+public class ProjectStorageUtil {
+
+    public static final String PREFIX_IMAGE = "IMG_";
+    public static final String PREFIX_VIDEO = "VIDEO_";
 
     private static File innerFileDir;
     private static File innerCacheDir;
@@ -163,5 +171,49 @@ public class ProjectStorage {
         return externalPublicDir;
     }
 
+    /**
+     * 根据当前时间获取一个变化的图片文件名
+     * @return
+     */
+    public static String getImageName(){
+        return getImageName(".jpg");
+    }
+
+    /**
+     * 根据当前时间获取一个变化的图片文件名，并添加随机数
+     * @param extension 扩展名
+     * @return
+     */
+    public static String getImageName(String extension){
+        String format = new SimpleDateFormat("yyMMdd_HHmmss_", Locale.CHINA).format(new Date());
+        int num = RandomUtils.nextInt(1, 999);
+        if (extension.startsWith(".")){
+            return PREFIX_IMAGE + format + num + extension;
+        } else {
+            return PREFIX_IMAGE + format + num + "." + extension;
+        }
+    }
+
+    /**
+     * 根据当前时间获取一个变化的视频文件名
+     * @return
+     */
+    public static String getVideoName(){
+        return getImageName(".mp4");
+    }
+
+    /**
+     * 根据当前时间获取一个变化的视频文件名
+     * @param extension 扩展名
+     * @return
+     */
+    public static String getVideoName(String extension){
+        String format = new SimpleDateFormat("yyMMdd_HHmmss", Locale.CHINA).format(new Date());
+        if (extension.startsWith(".")){
+            return PREFIX_VIDEO + format + extension;
+        } else {
+            return PREFIX_VIDEO + format + "." + extension;
+        }
+    }
 
 }
