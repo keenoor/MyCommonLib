@@ -19,11 +19,25 @@
             android:text="拍照"
             android:layout_weight="1"/>
         <Button
-            android:id="@+id/btn_album"
+            android:id="@+id/btn_video"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             style="?android:buttonStyle"
             android:text="录像"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_album"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="?android:buttonStyle"
+            android:text="选取图片"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_crop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="?android:buttonStyle"
+            android:text="剪裁图片"
             android:layout_weight="1"/>
     </LinearLayout>
 
@@ -32,5 +46,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="center"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:visibility="gone"/>
+    <VideoView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 </LinearLayout>
