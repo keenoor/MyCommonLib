@@ -16,14 +16,12 @@
 
 package me.keenor.androidcommon.util;
 
-import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.res.Resources;
-import android.text.TextUtils;
+import android.graphics.Point;
 import android.util.DisplayMetrics;
-
-import java.util.List;
+import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Author:      chenliuchun
@@ -93,24 +91,40 @@ public class DensityUtil {
     }
 
     /**
-     * 判断某个界面是否在前台
+     * 获得 view 的宽高尺寸
      *
-     * @param context   当前的上下文
-     * @param className 类全名
+     * @param view
+     * @return
      */
-    public static boolean isForeground(Context context, String className) {
-        if (context == null || TextUtils.isEmpty(className)) {
-            return false;
+    public static Point getViewSize(View view) {
+        Point size = new Point();
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+
+        int width = view.getWidth();
+        // 如果没有初始化显示，从所在布局中取
+        if (width <= 0) {
+            LogUtil.e1("不能直接获取View的宽度");
+            width = params.width;
         }
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
-        if (list != null && list.size() > 0) {
-            ComponentName cpn = list.get(0).topActivity;
-            if (className.equals(cpn.getClassName())) {
-                return true;
-            }
+        // 最后的是取屏幕尺寸
+        if (width <= 0) {
+            width = DensityUtil.getScreenW();
         }
-        return false;
+
+        int height = view.getHeight();
+        // 如果没有初始化显示，从所在布局中取
+        if (height <= 0) {
+            LogUtil.e1("不能直接获取View的高度");
+            height = params.height;
+        }
+        // 最后的是取屏幕尺寸
+        if (height <= 0) {
+            height = DensityUtil.getScreenH();
+        }
+
+        size.set(width, height);
+        return size;
     }
+
 
 }

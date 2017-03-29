@@ -656,6 +656,10 @@ public final class BitmapUtil {
         int realWidth = options.outWidth;
         int realHeight = options.outHeight;
 
+        if (realWidth == 0 || realHeight ==0){
+            throw new IllegalArgumentException("传入的文件路径无效");
+        }
+
         int inSampleSize = 1;
         if (realWidth > width || realHeight > height) {
             int widthRadio = Math.round(realWidth * 1.0f / width);

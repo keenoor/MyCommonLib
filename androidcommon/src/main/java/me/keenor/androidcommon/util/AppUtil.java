@@ -1,8 +1,13 @@
 package me.keenor.androidcommon.util;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.text.TextUtils;
+
+import java.util.List;
 
 /**
  * Created by chenliuchun on 17/3/16.
@@ -29,4 +34,27 @@ public class AppUtil {
         return AppUtil.getContext().getApplicationInfo() != null &&
                 (AppUtil.getContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
+
+    /**
+     * 判断某个界面是否在前台
+     *
+     * @param context   当前的上下文
+     * @param className 类全名
+     */
+    public static boolean isForeground(Context context, String className) {
+        if (context == null || TextUtils.isEmpty(className)) {
+            return false;
+        }
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
+        if (list != null && list.size() > 0) {
+            ComponentName cpn = list.get(0).topActivity;
+            if (className.equals(cpn.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
