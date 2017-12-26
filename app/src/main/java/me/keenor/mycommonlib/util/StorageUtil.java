@@ -21,7 +21,7 @@ import me.keenor.androidcommon.util.LogUtil;
  * -----------------------------------------------------
  */
 
-public class ProjectStorageUtil {
+public class StorageUtil {
 
     public static final String PREFIX_IMAGE = "IMG_";
     public static final String PREFIX_VIDEO = "VIDEO_";

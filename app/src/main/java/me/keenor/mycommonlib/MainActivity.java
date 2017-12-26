@@ -1,6 +1,8 @@
 package me.keenor.mycommonlib;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,7 +27,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setOnClickListener(R.id.btn_03, this)
                 .setOnClickListener(R.id.btn_04, this)
                 .setOnClickListener(R.id.btn_05, this)
-                .setOnClickListener(R.id.btn_06, this);
+                .setOnClickListener(R.id.btn_06, this)
+                .setOnClickListener(R.id.btn_07, this)
+                .setOnClickListener(R.id.btn_08, this);
+
+
+        // test
 
     }
 
@@ -60,14 +67,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 CameraPermissionActivity.show(this);
                 break;
             case R.id.btn_06:
-
-
+                ViewEventActivity.show(this);
                 break;
             case R.id.btn_07:
 
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.tencent.mm");
+                startActivity(intent);
                 break;
             case R.id.btn_08:
-
+                String url="mqqwpa://im/chat?chat_type=wpa&uin=2101607976";
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));//指定的QQ号只需要修改uin后的值即可。
                 break;
         }
     }

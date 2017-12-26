@@ -20,7 +20,7 @@ import me.keenor.androidcommon.util.DensityUtil;
 import me.keenor.androidcommon.util.LogUtil;
 import me.keenor.androidcommon.util.MediaUtil;
 import me.keenor.androidcommon.util.ViewFindHelper;
-import me.keenor.mycommonlib.util.ProjectStorageUtil;
+import me.keenor.mycommonlib.util.StorageUtil;
 
 
 /**
@@ -72,6 +72,7 @@ public class CameraPermissionActivity extends AppCompatActivity implements View.
         super.onActivityResult(requestCode, resultCode, data);
         LogUtil.i2("onActivityResult: requestCode: " + requestCode
                 + ", resultCode: " + requestCode + ", data: " + data);
+
 
         // 如果是拍照
         if (CODE_IMAGE == requestCode) {
@@ -180,11 +181,11 @@ public class CameraPermissionActivity extends AppCompatActivity implements View.
      * 创建一个存储图片的文件对象
      */
     private static File getOutputImage() {
-        File mediaStorageDir = ProjectStorageUtil.getExternalPublicDir(Environment.DIRECTORY_PICTURES, "MyCameraApp");
+        File mediaStorageDir = StorageUtil.getExternalPublicDir(Environment.DIRECTORY_PICTURES, "MyCameraApp");
         if (mediaStorageDir == null) {
             return null;
         }
-        return new File(mediaStorageDir + File.separator + ProjectStorageUtil.getImageName());
+        return new File(mediaStorageDir + File.separator + StorageUtil.getImageName());
     }
 
     public static void show(Context context) {

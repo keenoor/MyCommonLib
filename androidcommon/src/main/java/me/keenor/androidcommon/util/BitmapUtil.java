@@ -629,7 +629,7 @@ public final class BitmapUtil {
 
 
     /**
-     * 压缩 bitmap 图片，采用采样率方法
+     * 压缩 bitmap 图片，采用采样率方法，压缩分辨率
      * @param path
      * @param width
      * @param height
@@ -637,6 +637,10 @@ public final class BitmapUtil {
      */
     public static Bitmap compressBitmap(String path, int width, int height) {
         return compressBitmap(path, width, height, false);
+    }
+
+    public static Bitmap compressBitmap(String path, int maxSide) {
+        return compressBitmap(path, maxSide, maxSide, false);
     }
 
     /**

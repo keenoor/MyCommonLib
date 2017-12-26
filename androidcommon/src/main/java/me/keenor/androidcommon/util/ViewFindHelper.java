@@ -91,7 +91,7 @@ public class ViewFindHelper {
     }
 
     /**
-     * 获取根布局View
+     * 获取根布局View，一般是是activity根布局的父布局
      *
      * @return
      */
@@ -110,6 +110,9 @@ public class ViewFindHelper {
         View view = mViewMap.get(viewId);
         if (view == null) {
             view = mContentView.findViewById(viewId);
+            if (view == null) {
+                throw new NullPointerException("findViewById id: " + viewId + " 未找到");
+            }
             mViewMap.put(viewId, view);
         }
         return (T) view;
