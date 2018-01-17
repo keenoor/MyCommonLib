@@ -70,6 +70,7 @@ public class CheckView extends View {
 
         okBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.icon_tick);
 
+        // TODO: 2017/12/27 考虑 postInvalidateDelayed
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
